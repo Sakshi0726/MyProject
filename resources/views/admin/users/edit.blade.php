@@ -4,7 +4,7 @@
 	<h1 align="center">Edit User</h1>
 	
 	<div class="col-sm-3">
-		<br/><img src="{{$user->photo->file}}" class="img-responsive img-rounded">
+		<br/><img src="{{$user->photo ? $user->photo->file:'sakshi'}}" class="img-responsive img-rounded">
 	</div>
 	
 	<div class="col-sm-9">
@@ -27,7 +27,7 @@
 		
 		<div class="form-group">
 			{!!Form::label('is_active','Status:')!!}
-			{!!Form::select('is_active',array(1=>'Active',0=>'Not Active'),0,['class'=>'form-control'])!!}
+			{!!Form::select('is_active',array(1=>'Active',0=>'Not Active'),null,['class'=>'form-control'])!!}
 		</div>
 		
 		<div class="form-group">
@@ -41,12 +41,17 @@
 		</div>
 		
 		<div class="form-group">
-			{!!Form::submit('Create User',['class'=>'btn btn-primary'])!!}
+			{!!Form::submit('Edit User',['class'=>'btn btn-primary col-sm-3'])!!}
 		</div>
 	
 	{!!Form::close()!!}
-	</div>
 	
+	{!!Form::open(['method'=>'DELETE','action'=>['AdminUsersController@destroy',$user->id],'class'=>'pull-right'])!!}
+			<div class="form-group">
+			{!!Form::submit('Delete User',['class'=>'btn btn-danger'])!!}
+			</div>
+	{!!Form::close()!!}
+	</div>
 	<div class="row">
 	@include('includes.form_error')
 	</div>
