@@ -1,0 +1,6 @@
+"laravelcollective/html":"5.2.*",
+        "cviebrock/eloquent-sluggable": "^4.1"
+		
+		Collective\Html\HtmlServiceProvider::class,
+		
+		Cviebrock\EloquentSluggable\ServiceProvider::class,

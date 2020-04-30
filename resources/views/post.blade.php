@@ -2,6 +2,7 @@
 
 
 @section('content')
+<div id="outer">
     <!-- Blog Post -->
 
                 <!-- Title -->
@@ -65,51 +66,11 @@
                         </h4>
                         {{$comment->body}}
 						
-						<!-- Nested Comment -->
-						@if(count($comment->replies)>0)
-							@foreach($comment->replies as $reply)
-                        <div id="nested-comment" class="media">
-                            <a class="pull-left" href="#">
-                                <img height="64px" width="64px" class="media-object" src="{{$reply->photo}}" alt="">
-                            </a>
-	
-                            <div class="media-body">
-                                <h4 class="media-heading">{{$reply->author}}
-                                    <small>{{$reply->created_at->diffForHumans()}}</small>
-                                </h4>
-								{{$reply->body}}
-                            </div>
-							
-							<div class="comment-reply-container">
-						<button class="toogle-reply btn btn-primary pull-right">Reply</button>
-						<div id="comment-reply">
-							
-							{!!Form::open(['method'=>'POST','action'=>'CommentRepliesController@createReply'])!!}
-							<input type="hidden" name="comment_id" value="{{$comment->id}}">
-						<div class="form-group">
-						{!!Form::label('body','Body:')!!}
-						{!!Form::textarea('body',null,['class'=>'form-control','rows'=>1])!!}
-						</div>
-						<div class="form-group">
-						{!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}
-						</div>
-						{!!Form::close()!!}
-                        </div>
-                        <!-- End Nested Comment -->
+						
 					</div>
 					</div>
-						@endforeach
-						@endif
-                    </div>
-                </div>
+					
 	@endforeach
 @endif
-@endsection
-
-@section('scripts')
-	<script>
-	$(".comment-reply-container .toogle-reply").click(function(){
-		$(this).next().show("slow");
-	});
-	</script>
+</div>
 @endsection
