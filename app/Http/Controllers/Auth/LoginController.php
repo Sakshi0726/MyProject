@@ -52,7 +52,7 @@ class LoginController extends Controller
 
      */
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin';
 
 
 

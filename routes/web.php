@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware'=>'admin'], function(){
-	Route::get('/admin', function(){
+Route::get('/admin', function(){
 
         return view('admin.index');
 
 
     });
+
+Route::group(['middleware'=>'admin'], function(){
 	
 	Route::resource('admin/users','AdminUsersController',['names'=>[
 	'index'=>'admin.users.index',
@@ -48,6 +48,8 @@ Route::group(['middleware'=>'admin'], function(){
 	'store'=>'admin.categories.store',
 	'edit'=>'admin.categories.edit',
 	]]);
+	
+	Route::delete('/delete/media','AdminMediaController@deleteMedia');
 	
 	Route::resource('admin/media','AdminMediaController',['names'=>[
 	'index'=>'admin.media.index',
